@@ -4,6 +4,8 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+   // kotlin("jvm") version "1.6.0"
+   // id ("org.jetbrains.kotlin.jvm") version "1.6.0"
 }
 
 version = "1.0"
@@ -43,7 +45,7 @@ kotlin {
 
 
                 implementation("org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10")
-                //implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.6")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
 
                 //implementation ("io.ktor:ktor-client-json:1.0.0")
@@ -68,7 +70,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
-
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
                 //  implementation ("io.ktor:ktor-client-json-jvm:1.0.0")
                 //   implementation ("io.ktor:ktor-client-android:1.0.0")
