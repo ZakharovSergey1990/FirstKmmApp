@@ -8,6 +8,13 @@ plugins {
    // id ("org.jetbrains.kotlin.jvm") version "1.6.0"
 }
 
+sqldelight {
+    database("TestDatabase") {
+        packageName = "com.example.db"
+    }
+}
+
+
 version = "1.0"
 
 kotlin {

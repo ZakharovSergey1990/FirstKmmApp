@@ -1,0 +1,22 @@
+import com.example.firstkmmapp.data.Address;
+import com.example.firstkmmapp.data.Company;
+
+CREATE TABLE IF NOT EXISTS UserEntity (
+ id INTEGER NOT NULL PRIMARY KEY,
+name TEXT NOT NULL,
+username TEXT NOT NULL,
+email TEXT NOT NULL,
+address TEXT AS Address NOT NULL,
+phone TEXT NOT NULL,
+website TEXT NOT NULL,
+company TEXT AS Company NOT NULL
+);
+
+getAllUsers:
+SELECT* FROM UserEntity;
+
+
+insertUser:
+    INSERT OR REPLACE
+    INTO UserEntity
+    VALUES (?, ?, ?, ? ,? ,? ,? ,?);
