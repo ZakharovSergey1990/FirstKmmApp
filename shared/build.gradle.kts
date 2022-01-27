@@ -19,17 +19,17 @@ version = "1.0"
 
 kotlin {
     android()
-//    iosX64()
-//    iosArm64()
-//    iosSimulatorArm64()
+   // iosX64()
+    iosArm64()
+  //  iosSimulatorArm64()
 
-    val iosTarget: (String, org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget = when {
-        System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
-        System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
-        else -> ::iosX64
-    }
-
-    iosTarget("ios") {}
+//    val iosTarget: (String, org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget = when {
+//        System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
+//        System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
+//        else -> ::iosX64
+//    }
+//
+//    iosTarget("ios") {}
 
     cocoapods {
         summary = "Some description for the Shared Module"
@@ -96,47 +96,52 @@ kotlin {
             }
         }
 
-        val iosMain by getting {
+//        val iosMain by getting {
+//            dependencies {
+//                implementation("io.ktor:ktor-client-ios:$ktorVersion")
+//                implementation("com.squareup.sqldelight:native-driver:1.5.3")
+//            }
+//        }
+       // val iosTest by getting
+
+//        val iosX64Main by getting {
+//       dependsOn(iosMain)
+//        }
+        val iosArm64Main by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-ios:$ktorVersion")
                 implementation("com.squareup.sqldelight:native-driver:1.5.3")
             }
         }
-        val iosTest by getting
-
-//        val iosX64Main by getting {
-//            dependencies {
-//                implementation("io.ktor:ktor-client-ios:$ktorVersion")
-//                implementation("com.squareup.sqldelight:native-driver:1.5.3")
-//            }
-//        }
-//        val iosArm64Main by getting {
-//            dependencies {
-//                implementation("io.ktor:ktor-client-ios:$ktorVersion")
-//                implementation("com.squareup.sqldelight:native-driver:1.5.3")
-//            }
-//        }
 //        val iosSimulatorArm64Main by getting {
 //            dependencies {
 //               implementation("io.ktor:ktor-client-ios:$ktorVersion")
 //                implementation("com.squareup.sqldelight:native-driver:1.5.3")
 //            }
 //        }
-//        val iosMain by creating {
-//            dependsOn(commonMain)
-//            iosX64Main.dependsOn(this)
-//            iosArm64Main.dependsOn(this)
-//            iosSimulatorArm64Main.dependsOn(this)
+        val iosMain by creating {
+            dependsOn(commonMain)
+           // iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+          //  iosSimulatorArm64Main.dependsOn(this)
+        }
+
+        val iosArm64Test by getting
+
+        val iosTest by creating {
+            dependsOn(commonTest)
+           // iosX64Test.dependsOn(this)
+            iosArm64Test.dependsOn(this)
+            //iosSimulatorArm64Test.dependsOn(this)
+        }
+//        val iosX64Test by getting{
+//            dependsOn(iosTest)
 //        }
-//        val iosX64Test by getting
-//        val iosArm64Test by getting
+//        val iosArm64Test by getting{
+//            dependsOn(iosTest)
+//        }
 //        val iosSimulatorArm64Test by getting
-//        val iosTest by creating {
-//            dependsOn(commonTest)
-//            iosX64Test.dependsOn(this)
-//            iosArm64Test.dependsOn(this)
-//            iosSimulatorArm64Test.dependsOn(this)
-//        }
+
     }
 }
 
