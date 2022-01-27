@@ -33,7 +33,7 @@ android {
     composeOptions {
 //        kotlinCompilerVersion = "1.3.61-dev-withExperimentalGoogleExtensions-20200129"
 //        kotlinCompilerExtensionVersion = "0.1.0-dev07"
-        kotlinCompilerExtensionVersion = "1.2.0-alpha01"
+        kotlinCompilerExtensionVersion = "1.0.4"
     }
 }
 
