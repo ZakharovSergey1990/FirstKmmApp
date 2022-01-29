@@ -9,6 +9,7 @@ import io.ktor.client.request.*
 import kotlinx.serialization.json.Json
 
 interface TestHttpApi {
+    @Throws(Exception::class)
     suspend fun getUsers(): List<User>
 }
 
@@ -24,7 +25,13 @@ class TestHttpApiImpl():TestHttpApi {
         }
     }
 
+    @Throws(Exception::class)
     override suspend fun getUsers(): List<User> {
-        return httpClient.get("https://jsonplaceholder.typicode.com/users")
+        try {
+            return httpClient.get("https://jsonplaceholder.typicode.com/users")
+        }
+        catch (c: Throwable){
+            return emptyList()
+        }
     }
 }

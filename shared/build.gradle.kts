@@ -19,8 +19,8 @@ version = "1.0"
 
 kotlin {
     android()
-   // iosX64()
-    iosArm64()
+    iosX64()
+   // iosArm64()
   //  iosSimulatorArm64()
 
 //    val iosTarget: (String, org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget = when {
@@ -38,6 +38,7 @@ kotlin {
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
+            isStatic = false
         }
     }
     
@@ -56,7 +57,11 @@ kotlin {
 
 
                 implementation("org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt"){
+                    version{
+                        strictly("1.6.0-native-mt")
+                    }
+                }
 
                 //implementation ("io.ktor:ktor-client-json:1.0.0")
              //   implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
@@ -107,7 +112,7 @@ kotlin {
 //        val iosX64Main by getting {
 //       dependsOn(iosMain)
 //        }
-        val iosArm64Main by getting {
+        val iosX64Main by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-ios:$ktorVersion")
                 implementation("com.squareup.sqldelight:native-driver:1.5.3")
@@ -122,16 +127,16 @@ kotlin {
         val iosMain by creating {
             dependsOn(commonMain)
            // iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
+            iosX64Main.dependsOn(this)
           //  iosSimulatorArm64Main.dependsOn(this)
         }
 
-        val iosArm64Test by getting
+        val iosX64Test by getting
 
         val iosTest by creating {
             dependsOn(commonTest)
            // iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
+            iosX64Test.dependsOn(this)
             //iosSimulatorArm64Test.dependsOn(this)
         }
 //        val iosX64Test by getting{
