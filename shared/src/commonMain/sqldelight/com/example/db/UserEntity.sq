@@ -20,3 +20,7 @@ insertUser:
     INSERT OR REPLACE
     INTO UserEntity
     VALUES (?, ?, ?, ? ,? ,? ,? ,?);
+
+    deleteUser:
+        DELETE FROM  UserEntity
+        WHERE id = :id;

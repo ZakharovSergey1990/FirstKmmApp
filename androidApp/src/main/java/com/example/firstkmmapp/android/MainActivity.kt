@@ -35,13 +35,14 @@ import com.example.firstkmmapp.api.TestHttpApi
 import com.example.firstkmmapp.api.TestHttpApiImpl
 import com.example.firstkmmapp.data.*
 import com.example.firstkmmapp.repository.UserRepositoryImpl
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 fun greet(): String {
     return Greeting().greeting()
 }
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,9 +63,10 @@ fun UsersPage(vm: MainViewModel = hiltViewModel()){
         LazyColumn(){
             items(vm.users){ user ->
                 UserCard(user = user, onClick = {
-                    Toast.makeText(context, "onClick", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "onClick user = ${user.name}", Toast.LENGTH_SHORT).show()
                 }) {
-                    Toast.makeText(context, "onClick", Toast.LENGTH_SHORT).show()
+                    vm.deleteUser(user.id)
+                    Toast.makeText(context, "onLongClick user = ${user.name}", Toast.LENGTH_SHORT).show()
                 }
             }
         }

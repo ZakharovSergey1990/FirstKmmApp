@@ -10,6 +10,7 @@ interface UserRepository {
     @Throws(Exception::class)
     suspend fun getAllUsers(): Flow<List<User>?>
     suspend fun insertUser(user: User)
+    suspend fun deleteUser(id: Long)
 }
 
 
@@ -29,5 +30,9 @@ class UserRepositoryImpl(
 
     override suspend fun insertUser(user: User) {
         userDataSource.insertUser(user)
+    }
+
+    override suspend fun deleteUser(id: Long) {
+        userDataSource.deleteUserById(id)
     }
 }

@@ -39,7 +39,9 @@ class UserDataSourceImpl(private val driver: DriverFactory) : UserDataSource {
     }
 
     override suspend fun deleteUserById(id: Long) {
-
+        withContext(Dispatchers.Default) {
+            queries.deleteUser(id)
+        }
     }
 
     override suspend fun insertUser(user: User) {
