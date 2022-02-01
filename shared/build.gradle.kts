@@ -49,31 +49,20 @@ kotlin {
         val commonMain by getting {
             dependencies {
 
-
               //  //ktor /
                implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
-
-
                 implementation("org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt"){
                     version{
                         strictly("1.6.0-native-mt")
                     }
                 }
-
-                //implementation ("io.ktor:ktor-client-json:1.0.0")
-             //   implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-
-
                 implementation("com.squareup.sqldelight:runtime:1.5.3")
                 implementation("com.squareup.sqldelight:coroutines-extensions:1.5.3")
-
                 //di
-
                 implementation("org.kodein.di:kodein-di:7.10.0")
-
             }
         }
         val commonTest by getting {
@@ -90,7 +79,6 @@ kotlin {
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
                 //  implementation ("io.ktor:ktor-client-json-jvm:1.0.0")
                 //   implementation ("io.ktor:ktor-client-android:1.0.0")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
                 implementation("com.squareup.sqldelight:android-driver:1.5.3")
             }
         }

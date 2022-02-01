@@ -17,7 +17,7 @@ import kotlinx.serialization.json.Json
 
 
 interface UserDataSource {
-   // fun getAllUsersAsFlow(): Flow<List<User>?>
+    fun getAllUsersAsFlow(): Flow<List<User>?>
 
     suspend fun deleteUserById(id: Long)
 
@@ -33,10 +33,10 @@ class UserDataSourceImpl(private val driver: DriverFactory) : UserDataSource {
 
     private var queries: UserEntityQueries = database.userEntityQueries
 
-   // override fun getAllUsersAsFlow(): Flow<List<User>> {
-//
-//        return queries.getAllUsers().asFlow().mapToList().map { list -> mapUsersToUserList(list) }
-//    }
+    override fun getAllUsersAsFlow(): Flow<List<User>> {
+
+        return queries.getAllUsers().asFlow().mapToList().map { list -> mapUsersToUserList(list) }
+    }
 
     override suspend fun deleteUserById(id: Long) {
 

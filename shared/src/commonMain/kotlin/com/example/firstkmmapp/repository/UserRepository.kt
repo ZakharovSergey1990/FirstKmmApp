@@ -8,24 +8,23 @@ import kotlinx.coroutines.flow.flow
 
 interface UserRepository {
     @Throws(Exception::class)
-    suspend fun getAllUsers(): List<User>?
+    suspend fun getAllUsers(): Flow<List<User>?>
     suspend fun insertUser(user: User)
 }
+
 
 class UserRepositoryImpl(
     val userDataSource: UserDataSource,
     val testHttpApi: TestHttpApi
 ) : UserRepository {
-
-    @Throws(Exception::class)
-    override suspend fun getAllUsers(): List<User>? {
+    override suspend fun getAllUsers(): Flow<List<User>?> {
         var users = userDataSource.getAllUsers()
         if (!users.isNullOrEmpty()) {
-            return users
+            return userDataSource.getAllUsersAsFlow()
         }
         users = testHttpApi.getUsers()
         users.forEach { insertUser(it) }
-        return users
+        return flow { emit(users) }
     }
 
     override suspend fun insertUser(user: User) {

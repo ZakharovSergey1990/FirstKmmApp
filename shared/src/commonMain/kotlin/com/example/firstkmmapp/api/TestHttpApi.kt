@@ -6,6 +6,8 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 
 interface TestHttpApi {
@@ -27,11 +29,12 @@ class TestHttpApiImpl():TestHttpApi {
 
     @Throws(Exception::class)
     override suspend fun getUsers(): List<User> {
-        try {
-            return httpClient.get("https://jsonplaceholder.typicode.com/users")
-        }
-        catch (c: Throwable){
-            return emptyList()
+        return withContext(Dispatchers.Default) {
+            try {
+                httpClient.get("https://jsonplaceholder.typicode.com/users")
+            } catch (c: Throwable) {
+                emptyList()
+            }
         }
     }
 }
