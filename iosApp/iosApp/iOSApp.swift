@@ -1,8 +1,13 @@
 import SwiftUI
+import shared
+
 
 @main
 struct iOSApp: App {
-	var body: some Scene {
+   // let ns = NSObject()
+   // MultiplatformSDK().doInit(context: NSObject.init())
+
+    var body: some Scene {
 		WindowGroup {
 			ContentView()
 		}

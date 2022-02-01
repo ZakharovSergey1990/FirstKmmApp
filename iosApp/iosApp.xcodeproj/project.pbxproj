@@ -13,6 +13,7 @@
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		8ABE165155B002B4F9CF89AF /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30517CC1E31CF95FE4D7741B /* Pods_iosApp.framework */; };
 		ED42CC9A27A82C460014DADF /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED42CC9927A82C460014DADF /* UsersViewModel.swift */; };
+		EDF6274D27A9C881002F99D0 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6274C27A9C881002F99D0 /* Observer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDAC6D82E77D08B6D8514815 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		ED42CC9927A82C460014DADF /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
+		EDF6274C27A9C881002F99D0 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
+				EDF6274C27A9C881002F99D0 /* Observer.swift */,
 				ED42CC9927A82C460014DADF /* UsersViewModel.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				EDF6274D27A9C881002F99D0 /* Observer.swift in Sources */,
 				ED42CC9A27A82C460014DADF /* UsersViewModel.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
