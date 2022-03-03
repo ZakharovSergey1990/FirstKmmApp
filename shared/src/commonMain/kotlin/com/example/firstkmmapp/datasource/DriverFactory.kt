@@ -1,4 +1,4 @@
-package com.example.firstkmmapp.data
+package com.example.firstkmmapp.datasource
 
 import com.example.firstkmmapp.KMMContext
 import com.squareup.sqldelight.db.SqlDriver

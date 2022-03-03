@@ -1,4 +1,4 @@
-package com.example.firstkmmapp.android
+package com.example.firstkmmapp.android.ui.users
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -8,15 +8,22 @@ import androidx.lifecycle.viewModelScope
 import com.example.firstkmmapp.data.User
 import com.example.firstkmmapp.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class UsersPageViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
     var users: List<User> by mutableStateOf(listOf())
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean>
+        get() = _isRefreshing.asStateFlow()
+
 
     init {
         viewModelScope.launch {
@@ -31,6 +38,12 @@ class MainViewModel @Inject constructor(
     fun deleteUser(id: Long) {
         viewModelScope.launch {
             userRepository.deleteUser(id)
+        }
+    }
+
+    fun updateUsers(){
+        viewModelScope.launch {
+            userRepository.updateUsers()
         }
     }
 }

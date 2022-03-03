@@ -3,11 +3,11 @@ package com.example.firstkmmapp.di
 import com.example.firstkmmapp.KMMContext
 import com.example.firstkmmapp.api.TestHttpApi
 import com.example.firstkmmapp.api.TestHttpApiImpl
-import com.example.firstkmmapp.data.DriverFactory
-import com.example.firstkmmapp.data.UserDataSource
-import com.example.firstkmmapp.data.UserDataSourceImpl
-import com.example.firstkmmapp.repository.UserRepository
-import com.example.firstkmmapp.repository.UserRepositoryImpl
+import com.example.firstkmmapp.datasource.DatabaseQueries
+import com.example.firstkmmapp.datasource.DatabaseQueriesImpl
+import com.example.firstkmmapp.datasource.DriverFactory
+import com.example.firstkmmapp.datasource.localdatasource.*
+import com.example.firstkmmapp.repository.*
 import org.kodein.di.*
 import kotlin.native.concurrent.ThreadLocal
 
@@ -24,9 +24,14 @@ object MultiplatformSDK {
             init = {
                 //  bind<Configuration>() with singleton {configuration}
                 bind <DriverFactory>() with singleton { DriverFactory(context) }
+                bind <DatabaseQueries>() with singleton { DatabaseQueriesImpl(instance()) }
+                bind <AlbumDataSource>() with singleton { AlbumDataSourceImpl(instance()) }
+                bind <PhotoDataSource>() with singleton { PhotoDataSourceImpl(instance()) }
                 bind <UserDataSource>() with singleton { UserDataSourceImpl(instance()) }
+                bind <AlbumRepository>() with singleton { AlbumRepositoryImpl(instance()) }
+                bind <PhotoRepository>() with singleton { PhotoRepositoryImpl(instance()) }
                 bind <TestHttpApi>() with singleton { TestHttpApiImpl() }
-                bind <UserRepository>() with singleton { UserRepositoryImpl(instance(), instance()) }
+                bind <UserRepository>() with singleton { UserRepositoryImpl(instance(), instance(), instance(), instance()) }
             }
         )
 
@@ -43,4 +48,10 @@ object MultiplatformSDK {
 }
 
 val MultiplatformSDK.userRepository: UserRepository
+    get() = MultiplatformSDK.di.instance()
+
+val MultiplatformSDK.albumRepository: AlbumRepository
+    get() = MultiplatformSDK.di.instance()
+
+val MultiplatformSDK.photoRepository: PhotoRepository
     get() = MultiplatformSDK.di.instance()

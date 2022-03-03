@@ -63,6 +63,10 @@ dependencies {
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation ("com.google.dagger:hilt-android:2.40.5")
     kapt("com.google.dagger:hilt-compiler:2.40.5")
+
+
+    implementation ("com.squareup.picasso:picasso:2.71828")
+    implementation ("com.google.accompanist:accompanist-swiperefresh:0.19.0")
 }
 
 //sourceSets {

@@ -45,7 +45,7 @@ kotlin {
     sourceSets {
 
         val ktorVersion = "1.6.7"
-        val napierVersion = "2.3.0"
+        val napierVersion = "2.4.0"
         val commonMain by getting {
             dependencies {
 
@@ -63,6 +63,8 @@ kotlin {
                 implementation("com.squareup.sqldelight:coroutines-extensions:1.5.3")
                 //di
                 implementation("org.kodein.di:kodein-di:7.10.0")
+
+            //    implementation("com.github.aakira:napier:$napierVersion")
             }
         }
         val commonTest by getting {
