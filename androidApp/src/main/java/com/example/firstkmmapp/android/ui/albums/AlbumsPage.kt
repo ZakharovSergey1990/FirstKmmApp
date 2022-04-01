@@ -1,5 +1,6 @@
 package com.example.firstkmmapp.android.ui.albums
 
+import android.content.res.Resources
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -18,7 +19,10 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -83,6 +87,8 @@ fun AlbumCard(
 ) {
 
     var extended = remember { mutableStateOf(false) }
+    var height by remember{ mutableStateOf(0.dp)}
+
     Card(modifier = Modifier
         .padding(10.dp)
         .fillMaxWidth()
@@ -99,15 +105,17 @@ fun AlbumCard(
 
         Row(modifier = Modifier
             .clickable { onClick() }
-            .fillMaxSize(),
+            .fillMaxSize().onSizeChanged { size ->
+                Log.d("AlbumCard", "size = ${size}")
+                height = pxToDp(size.height).dp },
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically) {
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Text(
                 text = album.title,
                 modifier = Modifier
                     .padding(10.dp)
-                    .fillMaxWidth(0.91f)
-                    .fillMaxHeight(),
+                    .fillMaxWidth(0.91f),
                 fontSize = 18.sp
             )
 
@@ -115,8 +123,8 @@ fun AlbumCard(
                 initialOffsetX = { offset -> offset },
                 animationSpec = tween(durationMillis = 500, easing = LinearOutSlowInEasing)
             ), modifier = Modifier
-                .fillMaxSize()
-                .fillMaxHeight(), exit = slideOutHorizontally(
+                .height(height)
+                , exit = slideOutHorizontally(
                 targetOffsetX = { offset -> offset },
                 animationSpec = tween(durationMillis = 500, easing = LinearOutSlowInEasing)
             ), content = {
@@ -125,9 +133,7 @@ fun AlbumCard(
                         onDelete()
                         extended.value = false
                     },
-                    modifier = Modifier
-                        .background(MaterialTheme.colors.primary)
-                        .fillMaxHeight()
+                    modifier = Modifier.background(MaterialTheme.colors.primary)
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Delete,
@@ -136,7 +142,10 @@ fun AlbumCard(
                     )
                 }
             })
-
         }
     }
+}
+
+fun pxToDp(px: Int): Int {
+    return (px / Resources.getSystem().displayMetrics.density).toInt()
 }

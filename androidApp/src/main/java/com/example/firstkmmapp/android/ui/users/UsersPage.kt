@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.firstkmmapp.android.NavActions
+import com.example.firstkmmapp.android.Page
 import com.example.firstkmmapp.data.User
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -42,7 +43,6 @@ fun UsersPage(navAction: NavActions, vm: UsersPageViewModel = hiltViewModel()){
     val context = LocalContext.current
     Surface() {
         SwipeRefresh(state = rememberSwipeRefreshState(isRefreshing = isRefreshing), onRefresh = { vm.updateUsers() }) {
-
             LazyColumn() {
                 items(vm.users) { user ->
                     UserCard(user = user, onClick = {
